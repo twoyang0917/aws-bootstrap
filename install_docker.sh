@@ -7,5 +7,5 @@ curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compo
 chmod +x /usr/local/bin/docker-compose
 
 mkdir -p /services && cd /services
-cp -f /tmp/aws-cfn-scripts/docker-compose.yml /services/
+cp -f /tmp/aws-bootstrap/docker-compose.yml /services/
 docker-compose up -d
