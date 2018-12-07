@@ -1,7 +1,9 @@
 version: '3.1'
 services:
-  tutum:
-    image: tutum/hello-world
+  wordpress:
+    image: wordpress
     restart: always
     ports:
       - 80:80
+    env_file:
+      - .env
