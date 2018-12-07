@@ -8,7 +8,10 @@ chmod +x /usr/local/bin/docker-compose
 
 pip install awscli
 
-DBPassword="$(aws ssm get-parameter --name /CloudFormation/Wordpress/DBPassword --with-decryption)"
+AZ=$(ec2metadata --availability-zone)
+REGION=${AZ::-1}
+DBPassword="$(aws --region $REGION ssm get-parameter --name /CloudFormation/Wordpress/DBPassword --with-decryption --query Parameter.Value)"
+DBPassword=${DBPassword:1:-1}
 sed -i "s/changeit/${DBPassword}/" /services/.env
 cp -f /services/aws-bootstrap/docker-compose.yml /services/
 docker-compose up -d
