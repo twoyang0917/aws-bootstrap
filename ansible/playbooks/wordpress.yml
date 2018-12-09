@@ -1,0 +1,22 @@
+#!/usr/bin/ansible-playbook
+---
+- name: Wordpress bootstrap
+  hosts: tag_AA_SERVER_GROUP_Wordpress
+  gather_facts: yes
+  remote_user: ubuntu
+  become: yes
+  become_user: root
+  tasks:
+    - name: get ec2 metadata
+      ec2_metadata_facts:
+    - name: lookup ssm parameter store in the current region
+      lineinfile:
+        path: /services/.env
+        regexp: "^WORDPRESS_DB_PASSWORD"
+        line: "WORDPRESS_DB_PASSWORD={{ lookup('aws_ssm', '/CloudFormation/Keypair/PrivateKey', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}"
+    - file:
+      src: ../docker-compose.yml
+      dest: /services/docker-compose.yml
+      owner: root
+      group: root
+      state: file
