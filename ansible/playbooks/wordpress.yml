@@ -13,10 +13,14 @@
       lineinfile:
         path: /services/.env
         regexp: "^WORDPRESS_DB_PASSWORD"
-        line: "WORDPRESS_DB_PASSWORD={{ lookup('aws_ssm', '/CloudFormation/Keypair/PrivateKey', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}"
-    - file:
-      src: ../docker-compose.yml
-      dest: /services/docker-compose.yml
-      owner: root
-      group: root
-      state: file
+        line: "WORDPRESS_DB_PASSWORD={{ lookup('aws_ssm', '/CloudFormation/Wordpress/DBPassword', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}"
+    - name: create docker-compose.yml
+      copy:
+        src: ../docker-compose.yml
+        dest: /services/docker-compose.yml
+        owner: root
+        group: root
+    - name: docker-compose up -d
+      docker_service:
+        project_src: /services
+        state: present
