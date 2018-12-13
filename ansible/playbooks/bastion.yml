@@ -10,7 +10,7 @@
       ec2_metadata_facts:
     - name: lookup ssm parameter store in the current region
       copy:
-        content: "{{ lookup('aws_ssm', '/CloudFormation/Keypair/PrivateKey', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}"
+        content: "{{ lookup('aws_ssm', '/keypairs/ansible/private', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}"
         dest: /home/ubuntu/.ssh/id_rsa
         owner: ubuntu
         group: ubuntu
