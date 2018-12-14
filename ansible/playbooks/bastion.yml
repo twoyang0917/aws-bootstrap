@@ -4,7 +4,9 @@
   hosts: localhost
   connection: local
   gather_facts: yes
-  remote_user: root
+  remote_user: ubuntu
+  become: yes
+  become_user: root
   roles:
     - ../roles/common
     - ../roles/bastion

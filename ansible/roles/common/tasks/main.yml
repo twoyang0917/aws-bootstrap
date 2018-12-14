@@ -1,6 +1,6 @@
 ---
 - name: set LC_ALL and LANG and LANGUAGE
-  file:
+  copy:
     src: locale
     dest: /etc/default/locale
     owner: root
