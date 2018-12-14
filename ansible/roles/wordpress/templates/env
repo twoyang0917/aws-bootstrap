@@ -1,0 +1,4 @@
+WORDPRESS_DB_HOST={{ lookup('aws_ssm', '/rds/wordpress/host', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}
+WORDPRESS_DB_NAME={{ lookup('aws_ssm', '/rds/wordpress/dbname', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}
+WORDPRESS_DB_USERNAME={{ lookup('aws_ssm', '/rds/wordpess/master_user', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}
+WORDPRESS_DB_PASSWORD={{ lookup('aws_ssm', '/rds/wordpress/master_password', region=vars['ansible_ec2_placement_region'], decrypt=True ) }}

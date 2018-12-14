@@ -1,0 +1,21 @@
+---
+- name: get ec2 metadata
+  ec2_metadata_facts:
+- name: lookup ssm parameter store in the current region
+  template:
+    src: env
+    dest: /services/.env
+    owner: ubuntu
+    group: ubuntu
+    mode: 0600
+- name: create docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: /services/docker-compose.yml
+    owner: ubuntu
+    group: ubuntu
+    mode: 0644
+- name: docker-compose up -d
+  docker_service:
+    project_src: /services
+    state: present

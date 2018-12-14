@@ -14,6 +14,9 @@ apt-get update && apt-get install -y ansible
 
 [ -d /services ] || mkdir /services
 cd /services
-cp -f aws-bootstrap/ansible/ec2.py /etc/ansible/ && chmod +x /etc/ansible/ec2.py
-cp -f aws-bootstrap/ansible/ec2.ini /etc/ansible/
-cp -f aws-bootstrap/ansible/ansible.cfg /etc/ansible/
+cp -f aws-bootstrap/ansible/config/ec2.py /etc/ansible/ && chmod +x /etc/ansible/ec2.py
+cp -f aws-bootstrap/ansible/config/ec2.ini /etc/ansible/
+cp -f aws-bootstrap/ansible/config/ansible.cfg /etc/ansible/
+
+chown -R ubuntu:ubuntu /services
+usermod -aG ubuntu docker
