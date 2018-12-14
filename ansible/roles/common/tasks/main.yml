@@ -1,0 +1,8 @@
+---
+- name: set LC_ALL and LANG and LANGUAGE
+  file:
+    src: locale
+    dest: /etc/default/locale
+    owner: root
+    group: root
+    mode: 0644
