@@ -19,4 +19,4 @@ cp -f aws-bootstrap/ansible/config/ec2.ini /etc/ansible/
 cp -f aws-bootstrap/ansible/config/ansible.cfg /etc/ansible/
 
 chown -R ubuntu:ubuntu /services
-usermod -aG ubuntu docker
+usermod -aG docker ubuntu
