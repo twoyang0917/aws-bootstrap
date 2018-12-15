@@ -16,6 +16,6 @@
     group: ubuntu
     mode: 0644
 - name: docker-compose up -d
-  docker_service:
-    project_src: /services
-    state: present
+  command: docker-compose up -d
+  args:
+    chdir: /services
