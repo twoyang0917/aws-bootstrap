@@ -1,7 +1,8 @@
 #!/usr/bin/ansible-playbook
 ---
-- name: Wordpress bootstrap
-  hosts: tag_AA_SERVER_GROUP_Wordpress
+- name: wordpress initial locally
+  hosts: localhost
+  connection: local
   gather_facts: yes
   remote_user: ubuntu
   become: yes
