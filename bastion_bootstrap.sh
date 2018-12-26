@@ -20,3 +20,6 @@ cp -f aws-bootstrap/ansible/config/ansible.cfg /etc/ansible/
 
 chown -R ubuntu:ubuntu /services
 usermod -aG docker ubuntu
+
+ansible-playbook aws-bootstrap/ansible/playbooks/bastion.yml
+
